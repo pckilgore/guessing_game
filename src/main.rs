@@ -8,8 +8,6 @@ fn main() {
     println!("Guess the number!");
     
     let secret_number = rand::thread_rng().gen_range(1,101);
-
-    println!("The secret number is: {}", secret_number);
     
     loop {
         println!("Please input your guess.");
@@ -24,8 +22,16 @@ fn main() {
         // reuse the guess variable name rather than forcing us to create two
         // unique variables
 
-        let guess: u32 = guess.trim().parse() 
-            .expect("Please type a number!");
+        let guess: u32 = match guess.trim().parse() {
+            // Remember that parse returns a Result type, and Result is an enum
+            // that has the variants Ok or Err. 
+            Ok(num) => num,
+            // The '_' is a catchall value.
+            Err(_) => {
+                println!("Not a valid number!");
+                continue;
+            }
+        };
 
         println!("You guessed: {}", guess);
 
