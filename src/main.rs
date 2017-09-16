@@ -24,8 +24,9 @@ fn main() {
         // reuse the guess variable name rather than forcing us to create two
         // unique variables
 
-        let guess: u32 = guess.trim().parse()
-            .expect("Please type a number!");
+        let guess: u32 = guess.trim().parse() {
+            
+        };
 
         println!("You guessed: {}", guess);
 
